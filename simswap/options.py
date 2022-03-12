@@ -14,7 +14,7 @@ class TrainOptions(BaseOptions):
         # Dataset
         self.parser.add_argument('--train_dataset_root_list', type=list, \
             # default=['/home/compu/dataset/kface_wild_cv2_256'])
-            default=['/home/compu/dataset/CelebHQ'])
+            default=['/home/compu/dataset/CelebHQ', "/home/compu/dataset/ffhq16k"])
             # default=['/home/compu/dataset/kface_wild_1024'])
             # default=['/home/compu/datasets/k-celeb'])
 
@@ -26,8 +26,8 @@ class TrainOptions(BaseOptions):
 
         # Weight
         self.parser.add_argument('--W_adv', type=float, default=1)
-        self.parser.add_argument('--W_id', type=float, default=5)
+        self.parser.add_argument('--W_id', type=float, default=10)
         self.parser.add_argument('--W_recon', type=float, default=10)
-        self.parser.add_argument('--W_cycle', type=float, default=10)
+        self.parser.add_argument('--W_cycle', type=float, default=0)
         self.parser.add_argument('--W_lpips', type=float, default=10)
-        self.parser.add_argument('--W_fm', type=float, default=0)
+        self.parser.add_argument('--W_fm', type=float, default=10)

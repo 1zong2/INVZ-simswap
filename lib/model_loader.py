@@ -1,36 +1,13 @@
+from pickle import NONE
 import numpy as np
 import torch
+from simswap.model import SimSwap
+from simswap.options import TrainOptions
 
 def CreateModel(gpu, args):
 
-    model = None
-    if args.model_id == 'simswap':
-        from simswap.model import SimSwap
-        from simswap.options import TrainOptions
-        args = TrainOptions().parse()
-        model = SimSwap(args, gpu)
-
-    elif args.model_id == 'faceshifter':
-        from faceshifter.model import FaceShifter
-        from faceshifter.options import TrainOptions
-        args = TrainOptions().parse()
-        model = FaceShifter(args, gpu)
-
-    elif args.model_id == 'hififace':
-        from hififace.model import HifiFace
-        from hififace.options import TrainOptions
-        args = TrainOptions().parse()
-        model = HifiFace(args, gpu)
-
-    elif args.model_id == 'stylerig':
-        from stylerig.model import StyleRig
-        from stylerig.options import TrainOptions
-        args = TrainOptions().parse()
-        model = StyleRig(args, gpu)
-        
-    else:
-        print(f"{args.model} is not supported.")
-        exit()
+    args = TrainOptions().parse()
+    model = SimSwap(args, gpu)
         
     args.isMaster = gpu == 0
     model.RandomGenerator = np.random.RandomState(42)
